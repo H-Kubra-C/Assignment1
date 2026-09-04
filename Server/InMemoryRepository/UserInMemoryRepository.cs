@@ -20,7 +20,7 @@ public class UserInMemoryRepository : IUserRepository
         if (existingUser is null)
         {
             throw new InvalidOperationException(
-                $"Post with ID '{user.Id}' not found")
+                $"User with ID '{user.Id}' not found")
         }
 
         users.Remove(existingUser);
