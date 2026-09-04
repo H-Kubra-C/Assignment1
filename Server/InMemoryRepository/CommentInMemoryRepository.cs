@@ -27,7 +27,7 @@ public class CommentInMemoryRepository : ICommentRepository
 
         comment.Remove(existingComment);
 
-        comment.Add(comment);
+        comments.Add(comment);
         return Task.CompletedTask;
     }
 
