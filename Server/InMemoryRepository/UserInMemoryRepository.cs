@@ -43,7 +43,12 @@ public class UserInMemoryRepository : IUserRepository
 
     public Task<User> GetSingleAsync(int id)
     {
-        // Do implementation
+        User? user = users.SingleOrDefault(p => p.Id == id);
+        if (user is null)
+        {
+            throw new InvalidOperationException($"User with ID '{id}' not found");
+        } 
+        
         return Task.FromResult(user);
     }
 
