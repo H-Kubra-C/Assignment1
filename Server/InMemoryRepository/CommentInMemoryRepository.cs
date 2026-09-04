@@ -33,10 +33,26 @@ public class CommentInMemoryRepository : ICommentRepository
 
     public Task DeleteAsync(int id)
     { 
-        Comment? commentToRemove = Comment.SingleOrDefault(c => c.Id == id);
+        Comment? commentToRemove = comments.SingleOrDefault(c => c.Id == id);
         if (commentToRemove is null)
         {
             throw new InvalidOperationException(
                 $"Comment with ID '{id}' not found");
-        } comment.Remove(commentToRemove); return Task.CompletedTask; }
+        } comments.Remove(commentToRemove); return Task.CompletedTask; }
+    
+    public Task<Comment> GetSingleAsync(int id)
+    {
+        Comment? comment = comments.SingleOrDefault(c => c.Id == id);
+        if (comment is null)
+        {
+            throw new InvalidOperationException($"Comment with ID '{id}' not found");
+        } 
+
+        return Task.FromResult(Comment);
+    }
+
+    public IQueryable<Comment> GetManyAsync()
+    {
+        return comments.AsQueryable();
+    }
 }
